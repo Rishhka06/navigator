@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Навигатор первого рабочего места | Старт без барьеров</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fb;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    /* Шапка */
+    header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* Основной контейнер */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Введение */
+    .intro {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .intro h2 {
+      color: #1e3c72;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      color: #444;
+      font-size: 1.05rem;
+    }
+
+    /* Шаги */
+    .step {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-left: 6px solid #2a5298;
+      transition: transform 0.2s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .step-number {
+      background: #2a5298;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .step h3 {
+      color: #1e3c72;
+      font-size: 1.35rem;
+    }
+
+    .step ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    .step ul li {
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .step p {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    /* Таблицы */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: #1e3c72;
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+      color: #333;
+    }
+
+    tr:hover td {
+      background: #f0f4fa;
+    }
+
+    /* Совет */
+    .tip {
+      background: #e8f0fe;
+      border-left: 5px solid #2a5298;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-top: 15px;
+      color: #1e3c72;
+      font-size: 0.95rem;
+    }
+
+    .tip strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* Чек-лист */
+    .checklist {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .checklist h3 {
+      color: #1e3c72;
+      margin-bottom: 15px;
+      font-size: 1.35rem;
+    }
+
+    .checklist label {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      font-size: 1.05rem;
+      cursor: pointer;
+      border-bottom: 1px dashed #e0e0e0;
+    }
+
+    .checklist label:last-child {
+      border-bottom: none;
+    }
+
+    .checklist input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 15px;
+      accent-color: #2a5298;
+      cursor: pointer;
+    }
+
+    .checklist input[type="checkbox"]:checked + span {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    /* Контакты */
+    .contacts {
+      background: #1e3c72;
+      color: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+
+    .contacts h3 {
+      margin-bottom: 15px;
+      font-size: 1.35rem;
+    }
+
+    .contacts p {
+      margin-bottom: 8px;
+      opacity: 0.95;
+    }
+
+    /* Заключение */
+    .conclusion {
+      background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 35px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .conclusion h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .conclusion p {
+      font-size: 1.05rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Подвал */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 0.9rem;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    /* Кнопка вверх */
+    .up-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #2a5298;
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .up-btn:hover {
+      background: #1e3c72;
+    }
+
+    /* Адаптив */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .step {
+        padding: 20px;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+
+      .step h3 {
+        font-size: 1.15rem;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+
+      .container {
+        padding: 20px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header>
+    <div class="badge">СТАРТ БЕЗ БАРЬЕРОВ</div>
+    <h1>Навигатор первого рабочего места</h1>
+    <p>Пошаговое руководство для молодёжи Республики Ингушетия: как найти первую работу, составить резюме и не попасться мошенникам</p>
+  </header>
+
+  <div class="container">
+
+    <!-- ВВЕДЕНИЕ -->
+    <section class="intro">
+      <h2>Добро пожаловать!</h2>
+      <p>Поиск первой работы — это всегда волнительно. Ты не знаешь, с чего начать, куда обратиться, как правильно составить резюме и не попасться на уловки мошенников. Этот навигатор создан специально для молодёжи Республики Ингушетия, чтобы помочь тебе сделать первый шаг уверенно и без лишних барьеров.</p>
+      <p style="margin-top: 10px;">Просто следуй шагам — и у тебя всё получится!</p>
+    </section>
+
+    <!-- ШАГ 1 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <h3>Определи свои цели</h3>
+      </div>
+      <p>Прежде чем искать работу, ответь себе на вопросы:</p>
+      <ul>
+        <li>Какая работа мне интересна? (сфера, должность, характер деятельности)</li>
+        <li>Сколько времени я готов(а) работать? (полный день, подработка, удалённо)</li>
+        <li>Что для меня важнее: зарплата, опыт, гибкий график или близость к дому?</li>
+        <li>Какие у меня есть навыки и сильные стороны?</li>
+      </ul>
+      <div class="tip">
+        <strong>Совет:</strong> Запиши свои ответы на лист бумаги. Это поможет понять, какие вакансии тебе подходят, а какие — нет.
+      </div>
+    </section>
+
+    <!-- ШАГ 2 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <h3>Составь резюме</h3>
+      </div>
+      <p>Резюме — это твоя визитная карточка. Даже если нет опыта работы, его можно и нужно составить.</p>
+      <table>
+        <tr>
+          <th>Раздел</th>
+          <th>Что указать</th>
+        </tr>
+        <tr>
+          <td>ФИО и контакты</td>
+          <td>Имя, фамилия, телефон, email</td>
+        </tr>
+        <tr>
+          <td>Цель</td>
+          <td>Какую работу ищешь</td>
+        </tr>
+        <tr>
+          <td>Образование</td>
+          <td>Школа, колледж, вуз, курсы</td>
+        </tr>
+        <tr>
+          <td>Навыки</td>
+          <td>Компьютерные программы, языки, коммуникабельность</td>
+        </tr>
+        <tr>
+          <td>Опыт (если есть)</td>
+          <td>Подработки, волонтёрство, практика</td>
+        </tr>
+        <tr>
+          <td>Личные качества</td>
+          <td>Ответственность, пунктуальность, желание учиться</td>
+        </tr>
+      </table>
+      <div class="tip">
+        <strong>Совет:</strong> Не пиши слишком много. Резюме должно быть на 1 страницу. Используй простой и понятный язык.
+      </div>
+    </section>
+
+    <!-- ШАГ 3 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <h3>Найди вакансии</h3>
+      </div>
+      <p>Проверенные сайты и ресурсы для поиска работы:</p>
+      <table>
+        <tr>
+          <th>Ресурс</th>
+          <th>Ссылка</th>
+        </tr>
+        <tr>
+          <td>Портал «Работа России»</td>
+          <td>trudvsem.ru</td>
+        </tr>
+        <tr>
+          <td>HeadHunter</td>
+          <td>hh.ru</td>
+        </tr>
+        <tr>
+          <td>Авито Работа</td>
+          <td>avito.ru</td>
+        </tr>
+        <tr>
+          <td>Центр занятости Ингушетии</td>
+          <td>официальный сайт</td>
+        </tr>
+        <tr>
+          <td>Социальные сети</td>
+          <td>VK, Telegram-каналы</td>
+        </tr>
+      </table>
+      <div class="tip">
+        <strong>Совет:</strong> Не ограничивайся одним сайтом. Регистрируйся на нескольких и подписывайся на обновления.
+      </div>
+    </section>
+
+    <!-- ШАГ 4 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">4</div>
+        <h3>Проверь работодателя</h3>
+      </div>
+      <p>Как не стать жертвой мошенников:</p>
+      <ul>
+        <li><strong>Никогда не плати за трудоустройство.</strong> Настоящий работодатель не берёт деньги за приём на работу.</li>
+        <li><strong>Проверь компанию в интернете.</strong> Поищи отзывы, посмотри, есть ли у неё официальный сайт.</li>
+        <li><strong>Не отдавай оригиналы документов.</strong> Паспорт, трудовую книжку и дипломы предъявляй только при официальном трудоустройстве.</li>
+        <li><strong>Осторожно с «работой мечты».</strong> Если обещают огромную зарплату за простую работу — это подозрительно.</li>
+        <li><strong>Встречайся в офисе.</strong> Если собеседование проходит в кафе или на улице — будь настороже.</li>
+      </ul>
+      <div class="tip">
+        <strong>Совет:</strong> Если сомневаешься — посоветуйся с родителями, педагогами или специалистом центра занятости.
+      </div>
+    </section>
+
+    <!-- ШАГ 5 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">5</div>
+        <h3>Подготовься к собеседованию</h3>
+      </div>
+      <p><strong>Что взять с собой:</strong></p>
+      <ul>
+        <li>Паспорт</li>
+        <li>Резюме (распечатанное)</li>
+        <li>Документы об образовании (если есть)</li>
+        <li>Ручку и блокнот</li>
+      </ul>
+      <p style="margin-top: 15px;"><strong>Как вести себя:</strong></p>
+      <ul>
+        <li>Приди вовремя (лучше за 10 минут до начала).</li>
+        <li>Оденься аккуратно и опрятно.</li>
+        <li>Говори спокойно и уверенно.</li>
+        <li>Задавай вопросы о работе: график, обязанности, зарплата.</li>
+      </ul>
+      <div class="tip">
+        <strong>Совет:</strong> Отрепетируй ответы дома перед зеркалом или с другом.
+      </div>
+    </section>
+
+    <!-- ШАГ 6 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">6</div>
+        <h3>Узнай о мерах поддержки</h3>
+      </div>
+      <p>Государственные программы для молодёжи:</p>
+      <table>
+        <tr>
+          <th>Мера поддержки</th>
+          <th>Где узнать</th>
+        </tr>
+        <tr>
+          <td>Субсидия на открытие бизнеса</td>
+          <td>Центр занятости</td>
+        </tr>
+        <tr>
+          <td>Профессиональное обучение</td>
+          <td>Центр занятости, образовательные центры</td>
+        </tr>
+        <tr>
+          <td>Временное трудоустройство</td>
+          <td>Центр занятости</td>
+        </tr>
+        <tr>
+          <td>Стажировка для выпускников</td>
+          <td>Портал «Работа России»</td>
+        </tr>
+      </table>
+      <div class="tip">
+        <strong>Совет:</strong> Обратись в центр занятости по месту жительства — там тебе бесплатно помогут с поиском работы.
+      </div>
+    </section>
+
+    <!-- ШАГ 7 -->
+    <section class="step">
+      <div class="step-header">
+        <div class="step-number">7</div>
+        <h3>Начни работать</h3>
+      </div>
+      <p>Когда тебя приняли на работу:</p>
+      <ul>
+        <li><strong>Заключи трудовой договор.</strong> Это обязательно! В нём должны быть указаны: должность, зарплата, график, условия труда.</li>
+        <li><strong>Убедись, что тебя официально оформляют.</strong> Это гарантирует тебе социальные выплаты, отпуск и больничный.</li>
+        <li><strong>Сохраняй все документы.</strong> Трудовой договор, приказы, расчётные листы.</li>
+        <li><strong>Не бойся задавать вопросы.</strong> Если что-то непонятно — спрашивай у руководителя или в отделе кадров.</li>
+      </ul>
+      <div class="tip">
+        <strong>Совет:</strong> Первые месяцы будет сложно, но это нормально. Главное — не сдаваться и учиться новому.
+      </div>
+    </section>
+
+    <!-- ЧЕК-ЛИСТ -->
+    <section class="checklist">
+      <h3>Чек-лист для быстрого старта</h3>
+      <label><input type="checkbox"> <span>Определил(а), какую работу ищу</span></label>
+      <label><input type="checkbox"> <span>Составил(а) резюме</span></label>
+      <label><input type="checkbox"> <span>Зарегистрировался(ась) на сайтах по поиску работы</span></label>
+      <label><input type="checkbox"> <span>Проверил(а) работодателя</span></label>
+      <label><input type="checkbox"> <span>Подготовился(ась) к собеседованию</span></label>
+      <label><input type="checkbox"> <span>Узнал(а) о мерах государственной поддержки</span></label>
+      <label><input type="checkbox"> <span>Заключил(а) трудовой договор</span></label>
+      <label><input type="checkbox"> <span>Начал(а) работать!</span></label>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section class="contacts">
+      <h3>Полезные контакты</h3>
+      <p><strong>Центр занятости Республики Ингушетия</strong> — [адрес, телефон]</p>
+      <p><strong>Портал «Работа России»</strong> — trudvsem.ru</p>
+      <p><strong>Горячая линия по вопросам труда</strong> — 8-800-XXX-XX-XX</p>
+      <p><strong>Молодёжный центр Республики Ингушетия</strong> — [адрес, телефон]</p>
+    </section>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <section class="conclusion">
+      <h3>Удачи в твоём первом рабочем месте!</h3>
+      <p>Первый шаг всегда самый сложный. Но если действовать по шагам, не бояться задавать вопросы и использовать доступные ресурсы — всё получится. Помни: твоя первая работа — это старт, опыт и возможность расти.</p>
+    </section>
+
+  </div>
+
+  <!-- ПОДВАЛ -->
+  <footer>
+    <p>Навигатор разработан в рамках социального проекта «Старт без барьеров»</p>
+    <p>Студенты: Торшхоева Раяна Абукаровна, Кодзоева Дали Аслановна</p>
+    <p>© 2026</p>
+  </footer>
+
+  <!-- КНОПКА ВВЕРХ -->
+  <button class="up-btn" id="upBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+    // Показать кнопку "вверх" при прокрутке
+    window.addEventListener('scroll', function() {
+      const btn = document.getElementById('upBtn');
+      if (window.scrollY > 300) {
+        btn.style.display = 'flex';
+      } else {
+        btn.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
